@@ -66,7 +66,7 @@ const YouTubeDownloader: React.FC = () => {
             const url = window.URL.createObjectURL(new Blob([data]));
             const a = document.createElement("a");
             a.href = url;
-            a.download = `${videoDetails.title}.mp4`; // Change file extension based on actual type
+            a.download = `${videoDetails.title}.mp4`;
             document.body.appendChild(a);
             a.click();
             a.remove();
@@ -87,7 +87,7 @@ const YouTubeDownloader: React.FC = () => {
                         quality: selectedQuality?.itag,
                     },
                     {
-                        responseType: "blob", // Set response type to blob
+                        responseType: "blob",
                         onDownloadProgress: (progressEvent) => {
                             if (selectedQuality.contentLength && progressEvent.loaded) {
                                 const progress = Math.round(
@@ -219,7 +219,7 @@ const YouTubeDownloader: React.FC = () => {
                     </>
                 )}
 
-                {(status === "downloading" || status === "completed") && (
+                {selectedQuality?.contentLength && (status === "downloading" || status === "completed") ? (
                     <Box sx={{ width: "100%", mt: 2 }}>
                         <LinearProgress
                             variant="determinate"
@@ -235,7 +235,7 @@ const YouTubeDownloader: React.FC = () => {
                             {downloadProgress}% Downloaded
                         </Typography>
                     </Box>
-                )}
+                ) : ''}
 
                 {status === "completed" && (
                     <Box
