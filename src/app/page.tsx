@@ -31,7 +31,7 @@ const formatFileSize = (bytes) => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 };
 
-const apiUrl = process.env.API_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const YouTubeDownloader: React.FC = () => {
     const [videoUrl, setVideoUrl] = useState<string>("");
